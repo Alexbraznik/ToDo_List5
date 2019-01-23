@@ -13,6 +13,9 @@ namespace ToDoList
     {
         public void ConfigureAuth(IAppBuilder app)
         {
+            app.CreatePerOwinContext(ApplicationDbContext.Create);
+            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
+            app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
@@ -34,13 +37,5 @@ namespace ToDoList
 
 
         }
-    }
-
-    internal class ApplicationUser
-    {
-    }
-
-    internal class ApplicationUserManager
-    {
     }
 }
