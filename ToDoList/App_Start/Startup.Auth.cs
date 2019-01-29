@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using ToDoList.Models;
+using static ToDoList.Controllers.ToDoesController;
 
 namespace ToDoList
 {
@@ -13,9 +14,6 @@ namespace ToDoList
     {
         public void ConfigureAuth(IAppBuilder app)
         {
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
-            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-            app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
@@ -24,9 +22,6 @@ namespace ToDoList
                 Provider = new CookieAuthenticationProvider
                 {
  
-                    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
-                        validateInterval: TimeSpan.FromMinutes(30),
-                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
             });            
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
@@ -37,5 +32,9 @@ namespace ToDoList
 
 
         }
+    }
+
+    internal class ApplicationUserManager
+    {
     }
 }

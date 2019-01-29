@@ -5,6 +5,8 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using ToDoList.Models;
@@ -14,31 +16,34 @@ namespace ToDoList.Controllers
     public class ToDoesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private object toDo;
+        private ApplicationUser currentUser;
+        private IEnumerable<ToDo> myToDoes;
+
+        public IEnumerable<ToDo> MyToDoes { get => myToDoes; set => myToDoes = value; }
+        public object ToDo { get => toDo; set => toDo = value; }
+        internal ApplicationUser CurrentUser { get => currentUser; set => currentUser = value; }
+
         public ActionResult Index()
         {
-            return View();
+            var model = new ToDo { };
+            return View("Index", model);
         }
 
         private IEnumerable<ToDo> GetMyToDoes()
         {
             string currentUserId = User.Identity.GetUserId();
-            ApplicationUser currentUser = db.Users.FirstOrDefault
-                (x => x.Id == currentUserId);
 
-            IEnumerable<ToDo> myToDoes = db.ToDos.ToList().Where(x => x.User == currentUser);
 
             int completeCount = 0;
-            foreach (ToDo toDo in myToDoes)
             {
-                if (toDo.IsDone)
                 {
                     completeCount++;
                 }
             }
 
-            ViewBag.Percent = Math.Round(100f * ((float)completeCount / (float) myToDoes.Count()));
 
-            return myToDoes;
+            return MyToDoes;
         }
 
         public ActionResult BuildToDoTable()
@@ -52,12 +57,9 @@ namespace ToDoList.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ToDo toDo = db.ToDos.Find(id);
-            if (toDo == null)
             {
                 return HttpNotFound();
             }
-            return View(toDo);
         }
 
         public ActionResult Create()
@@ -71,13 +73,7 @@ namespace ToDoList.Controllers
         {
             if (ModelState.IsValid)
             {
-                string currentUserId = User.Identity.GetUserId();
-                ApplicationUser currentUser = db.Users.FirstOrDefault
-                    (x => x.Id == currentUserId);
-                toDo.User = currentUser;
-                db.ToDos.Add(toDo);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
             }
 
             return View(toDo);
@@ -89,14 +85,8 @@ namespace ToDoList.Controllers
         {
             if (ModelState.IsValid)
             {
-                string currentUserId = User.Identity.GetUserId();
-                ApplicationUser currentUser = db.Users.FirstOrDefault
-                    (x => x.Id == currentUserId);
-                toDo.User = currentUser;
-                toDo.IsDone = false;
-                db.ToDos.Add(toDo);
-                db.SaveChanges();
-                
+
+
             }
 
             return PartialView("_ToDoTable", GetMyToDoes());
@@ -108,23 +98,18 @@ namespace ToDoList.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ToDo toDo = db.ToDos.Find(id);
 
-            if (toDo == null)
+            if (ToDo == null)
             {
                 return HttpNotFound();
             }
 
             string currentUserId = User.Identity.GetUserId();
-            ApplicationUser currentUser = db.Users.FirstOrDefault
-                (x => x.Id == currentUserId);
 
-            if (toDo.User != currentUser)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            return View(toDo);
         }
 
         [HttpPost]
@@ -133,7 +118,6 @@ namespace ToDoList.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(toDo).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -147,19 +131,13 @@ namespace ToDoList.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ToDo toDo = db.ToDos.Find(id);
-            if (toDo == null)
             {
                 return HttpNotFound();
-            }else
+            }
             {
-                toDo.IsDone = value;
-                db.Entry(toDo).State = EntityState.Modified;
-                db.SaveChanges();
-                return PartialView("_ToDoTable", GetMyToDoes());
             }
 
-            
+
         }
 
         public ActionResult Delete(int? id)
@@ -168,31 +146,47 @@ namespace ToDoList.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ToDo toDo = db.ToDos.Find(id);
-            if (toDo == null)
-            {
-                return HttpNotFound();
-            }
-            return View(toDo);
+            return ToDo == null ? HttpNotFound() : (ActionResult)View(ToDo);
         }
 
-        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+
+
+
+
+
+
+        internal class ApplicationUser
         {
-            ToDo toDo = db.ToDos.Find(id);
-            db.ToDos.Remove(toDo);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            internal Task<ClaimsIdentity> GenerateUserIdentityAsync(ApplicationUserManager manager)
+            {
+                throw new NotImplementedException();
+            }
         }
 
-        protected override void Dispose(bool disposing)
+        internal class ApplicationDbContext
         {
-            if (disposing)
+
+            internal void Dispose()
             {
-                db.Dispose();
+                throw new NotImplementedException();
             }
-            base.Dispose(disposing);
+
+            internal object Entry(ToDo toDo)
+            {
+                throw new NotImplementedException();
+            }
+
+            internal object Entry(object toDo)
+            {
+                throw new NotImplementedException();
+            }
+
+            internal void SaveChanges()
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }
+  
