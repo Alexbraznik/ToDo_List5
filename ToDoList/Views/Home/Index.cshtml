@@ -8,43 +8,103 @@
 <body>
     <script>
 
+        function fun1() {
+            var chbox1;
+            chbox1 = document.getElementById('one');
+            if (chbox1.checked) {
+                console.log('Выбран');
+            }
+            else {
+                console.log('Не выбран');
+            }
+        }
+
+        function fun2() {
+            var chbox2;
+            chbox2 = document.getElementById('two');
+            if (chbox2.checked) {
+                console.log('Выбран');
+            }
+            else {
+                console.log('Не выбран');
+            }
+        }
+
+
+
+        function fun3() {
+            var chbox3;
+            chbox3 = document.getElementById('three');
+            if (chbox3.checked) {
+                console.log('Выбран');
+            }
+            else {
+                console.log('Не выбран');
+            }
+        }
+
+
+        function fun4() {
+            var chbox4;
+            chbox4 = document.getElementById('four');
+            if (chbox4.checked) {
+                console.log('Выбран');
+            }
+            else {
+                console.log('Не выбран');
+            }
+        }
+
+
+
+        function fun5() {
+            var chbox5;
+            chbox5 = document.getElementById('five');
+            if (chbox5.checked) {
+                console.log('Выбран');
+            }
+            else {
+                console.log('Не выбран');
+            }
+        }
     </script>
-<div class="container">
-  <h2>Список Задач</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Задачи</th>
-        <th>Статус</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Создать таблицу</td>
-        <td>Выполнено</td>
-        <td><input id="Check" type="checkbox"></td>
-      </tr>
-      <tr>
-        <td>Создать столбец</td>
-        <td>Выполнено</td>
-        <td><input id="Check" type="checkbox"></td>
-      </tr>
-      <tr>
-        <td>Ещё столбец</td>
-        <td>Выполнено</td>
-        <td><input id="Check" type="checkbox"></td>      
-      </tr>
-      <tr>
-        <td>Ещё</td>
-        <td>Выполнено</td>
-        <td><input id="Check" type="checkbox"></td>      
-      </tr>
-      <tr>
-        <td>И ещё</td>
-        <td>Выполнено</td>
-        <td><input id="Check" type="checkbox"></td>      
-      </tr>
-    </tbody>
-  </table>
-</div>
+
+    <div class="container">
+        <h2>Список Задач</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Задачи</th>
+                    <th>Статус</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Создать таблицу</td>
+                    <td>Выполнено</td>
+                    <td><input type="checkbox" id="one" onchange="fun1()"></td>
+                </tr>
+                <tr>
+                    <td>Создать столбец</td>
+                    <td>Выполнено</td>
+                    <td><input type="checkbox" id="two" onchange="fun2()"></td>
+                </tr>
+                <tr>
+                    <td>Ещё столбец</td>
+                    <td>Выполнено</td>
+                    <td><input type="checkbox" id="three" onchange="fun3()"></td>
+                </tr>
+                <tr>
+                    <td>Ещё</td>
+                    <td>Выполнено</td>
+                    <td><input type="checkbox" id="four" onchange="fun4()"></td>
+                </tr>
+                <tr>
+                    <td>И ещё</td>
+                    <td>Выполнено</td>
+                    <td><input type="checkbox" id="five" onchange="fun5()"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
