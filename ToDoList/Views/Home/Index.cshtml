@@ -8,59 +8,9 @@
 <body>
     <script>
 
-        function fun1() {
-            var chbox1;
-            chbox1 = document.getElementById('one');
-            if (chbox1.checked) {
-                console.log('Выбран');
-            }
-            else {
-                console.log('Не выбран');
-            }
-        }
-
-        function fun2() {
-            var chbox2;
-            chbox2 = document.getElementById('two');
-            if (chbox2.checked) {
-                console.log('Выбран');
-            }
-            else {
-                console.log('Не выбран');
-            }
-        }
-
-
-
-        function fun3() {
-            var chbox3;
-            chbox3 = document.getElementById('three');
-            if (chbox3.checked) {
-                console.log('Выбран');
-            }
-            else {
-                console.log('Не выбран');
-            }
-        }
-
-
-        function fun4() {
-            var chbox4;
-            chbox4 = document.getElementById('four');
-            if (chbox4.checked) {
-                console.log('Выбран');
-            }
-            else {
-                console.log('Не выбран');
-            }
-        }
-
-
-
-        function fun5() {
-            var chbox5;
-            chbox5 = document.getElementById('five');
-            if (chbox5.checked) {
+        function chbox1() {
+            var chbox = $(chbox);
+            if (chbox.checked) {
                 console.log('Выбран');
             }
             else {
@@ -82,27 +32,27 @@
                 <tr>
                     <td>Создать таблицу</td>
                     <td>Выполнено</td>
-                    <td><input type="checkbox" id="one" onchange="fun1()"></td>
+                    <td><input type="checkbox" onchange="chbox1()"></td>
                 </tr>
                 <tr>
                     <td>Создать столбец</td>
                     <td>Выполнено</td>
-                    <td><input type="checkbox" id="two" onchange="fun2()"></td>
+                    <td><input type="checkbox" onchange="chbox1()"></td>
                 </tr>
                 <tr>
                     <td>Ещё столбец</td>
                     <td>Выполнено</td>
-                    <td><input type="checkbox" id="three" onchange="fun3()"></td>
+                    <td><input type="checkbox" onchange="chbox1()"></td>
                 </tr>
                 <tr>
                     <td>Ещё</td>
                     <td>Выполнено</td>
-                    <td><input type="checkbox" id="four" onchange="fun4()"></td>
+                    <td><input type="checkbox" onchange="chbox1()"></td>
                 </tr>
                 <tr>
                     <td>И ещё</td>
                     <td>Выполнено</td>
-                    <td><input type="checkbox" id="five" onchange="fun5()"></td>
+                    <td><input type="checkbox" onchange="chbox1()"></td>
                 </tr>
             </tbody>
         </table>
