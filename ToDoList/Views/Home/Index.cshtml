@@ -7,14 +7,11 @@
 
 <body>
     <script>
-
-        function chbox1() {
-            var chbox = $(chbox);
-            if (chbox.checked) {
-                console.log('Выбран');
-            }
-            else {
-                console.log('Не выбран');
+        function chbox1(ch) {
+            if (ch.checked) {
+                console.log("Выбран\n");
+            } else {
+                console.log("Не выбран\n");
             }
         }
     </script>
@@ -32,27 +29,27 @@
                 <tr>
                     <td>Создать таблицу</td>
                     <td>Выполнено</td>
-                    <td><input type="checkbox" onchange="chbox1()"></td>
+                    <td><input type="checkbox" onchange="chbox1(this)"></td>
                 </tr>
                 <tr>
                     <td>Создать столбец</td>
                     <td>Выполнено</td>
-                    <td><input type="checkbox" onchange="chbox1()"></td>
+                    <td><input type="checkbox" onchange="chbox1(this)"></td>
                 </tr>
                 <tr>
                     <td>Ещё столбец</td>
                     <td>Выполнено</td>
-                    <td><input type="checkbox" onchange="chbox1()"></td>
+                    <td><input type="checkbox" onchange="chbox1(this)"></td>
                 </tr>
                 <tr>
                     <td>Ещё</td>
                     <td>Выполнено</td>
-                    <td><input type="checkbox" onchange="chbox1()"></td>
+                    <td><input type="checkbox" onchange="chbox1(this)"></td>
                 </tr>
                 <tr>
                     <td>И ещё</td>
                     <td>Выполнено</td>
-                    <td><input type="checkbox" onchange="chbox1()"></td>
+                    <td><input type="checkbox" onchange="chbox1(this)"></td>
                 </tr>
             </tbody>
         </table>
