@@ -3,18 +3,21 @@
 }
 
 <head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 
 <body>
     <script>
-        function chbox1(ch) {
-            if (ch.checked) {
-                console.log("Выбран\n");
-            } else {
-                console.log("Не выбран\n");
-            }
-        }
+        $(document).ready(function () {
+            $('.chkbx').on('change', function () {
+                if ($(this).is(':checked'))
+                    console.log('Выбран');
+                else
+                    console.log('Не выбран');
+            });
+        });
     </script>
+
 
     <div class="container">
         <h2>Список Задач</h2>
@@ -29,27 +32,27 @@
                 <tr>
                     <td>Создать таблицу</td>
                     <td>Выполнено</td>
-                    <td><input type="checkbox" onchange="chbox1(this)"></td>
+                    <td><input type="checkbox" class="chkbx"></td>
                 </tr>
                 <tr>
                     <td>Создать столбец</td>
                     <td>Выполнено</td>
-                    <td><input type="checkbox" onchange="chbox1(this)"></td>
+                    <td><input type="checkbox" class="chkbx"></td>
                 </tr>
                 <tr>
                     <td>Ещё столбец</td>
                     <td>Выполнено</td>
-                    <td><input type="checkbox" onchange="chbox1(this)"></td>
+                    <td><input type="checkbox" class="chkbx"></td>
                 </tr>
                 <tr>
                     <td>Ещё</td>
                     <td>Выполнено</td>
-                    <td><input type="checkbox" onchange="chbox1(this)"></td>
+                    <td><input type="checkbox" class="chkbx"></td>
                 </tr>
                 <tr>
                     <td>И ещё</td>
                     <td>Выполнено</td>
-                    <td><input type="checkbox" onchange="chbox1(this)"></td>
+                    <td><input type="checkbox" class="chkbx"></td>
                 </tr>
             </tbody>
         </table>
