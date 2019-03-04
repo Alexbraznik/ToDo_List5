@@ -8,12 +8,20 @@
 
 <body>
     <script>
+        var mass = new Array("Первое", "Второе", "Третье", "Четвертое", "Пятое", "Шестое", "Седьмое", "Восьмое", "Девятое", "Десятое");
+
+        for (var i = 0; i < mass.length; i++)
+            console.log(mass[i]);
+
+        //var myArray = new Array("Задача 1", "Задача 2", "Задача 3", "Задача 4", "Задача 5", "Задача 6", "Задача 7", "Задача 8", "Задача 9", "Задача 10");
+        //console.log(myArray);
+
         $(document).ready(function () {
             $('.chkbx').on('change', function () {
                 if ($(this).is(':checked'))
-                    console.log('Выбран');
+                    console.log('выбран');
                 else
-                    console.log('Не выбран');
+                    console.log('не выбран');
             });
         });
     </script>
